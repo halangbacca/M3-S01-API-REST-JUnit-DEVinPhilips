@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class VeiculoService {
@@ -16,9 +17,12 @@ public class VeiculoService {
     @Autowired
     private VeiculoRepository repository;
 
-    public Veiculo cadastraVeiculo(Veiculo veiculo) {
-        repository.save(veiculo);
-        return veiculo;
+    public Veiculo cadastraVeiculo(Veiculo novoVeiculo) {
+        Optional<Veiculo> veiculoAntigo = repository.findById(novoVeiculo.getPlaca());
+        if (veiculoAntigo.isPresent()) {
+            throw new RuntimeException("Já existe um veículo cadastrado com essa placa!");
+        }
+        return repository.save(novoVeiculo);
     }
 
     public List<Veiculo> listaVeiculos() {
@@ -30,7 +34,10 @@ public class VeiculoService {
     }
 
     public void deletaVeiculoPelaPlaca(String placa) {
-        repository.findById(placa).orElseThrow(EntityNotFoundException::new);
+        Veiculo veiculo = repository.findById(placa).orElseThrow(EntityNotFoundException::new);
+        if (veiculo.getQtdMultas() > 0) {
+            throw new RuntimeException("O veículo não pode ser excluído pois possui multas cadastradas!");
+        }
         repository.deleteById(placa);
     }
 

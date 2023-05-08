@@ -1,9 +1,6 @@
 package br.senai.TestesUnit.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -18,15 +15,15 @@ import lombok.NoArgsConstructor;
 public class Veiculo {
     @Id
     @NotBlank(message = "O preenchimento da placa do veículo é obrigatória!")
-    String placa;
+    private String placa;
     @NotBlank(message = "O preenchimento do tipo do veículo é obrigatório!")
-    String tipo;
+    private String tipo;
     @NotBlank(message = "O preenchimento da cor do veículo é obrigatória!")
-    String cor;
+    private String cor;
     @NotNull(message = "O preenchimento do ano de fabricação do veículo é obrigatório!")
     @Column(name = "ano_fabricacao")
-    Integer anoFabricacao;
+    private Integer anoFabricacao;
     @NotNull(message = "O preenchimento da quantidade de multas do veículo é obrigatória!")
     @Column(name = "qtd_multas")
-    Integer qtdMultas;
+    private Integer qtdMultas;
 }
