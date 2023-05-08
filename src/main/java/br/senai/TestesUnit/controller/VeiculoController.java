@@ -1,7 +1,7 @@
 package br.senai.TestesUnit.controller;
 
 import br.senai.TestesUnit.model.Veiculo;
-import br.senai.TestesUnit.record.MultaRecord;
+import br.senai.TestesUnit.records.MultaRecord;
 import br.senai.TestesUnit.service.VeiculoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

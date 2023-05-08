@@ -1,6 +1,6 @@
 package br.senai.TestesUnit.exceptions;
 
-import br.senai.TestesUnit.record.Exceptions;
+import br.senai.TestesUnit.records.Exceptions;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;

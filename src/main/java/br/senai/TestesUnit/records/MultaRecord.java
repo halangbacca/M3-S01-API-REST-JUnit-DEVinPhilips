@@ -1,4 +1,4 @@
-package br.senai.TestesUnit.record;
+package br.senai.TestesUnit.records;
 
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotNull;

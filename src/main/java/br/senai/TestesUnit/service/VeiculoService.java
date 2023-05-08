@@ -1,7 +1,7 @@
 package br.senai.TestesUnit.service;
 
 import br.senai.TestesUnit.model.Veiculo;
-import br.senai.TestesUnit.record.MultaRecord;
+import br.senai.TestesUnit.records.MultaRecord;
 import br.senai.TestesUnit.repository.VeiculoRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;

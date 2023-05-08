@@ -1,4 +1,4 @@
-package br.senai.TestesUnit.record;
+package br.senai.TestesUnit.records;
 
 import org.springframework.validation.FieldError;
 
