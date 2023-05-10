@@ -1,6 +1,7 @@
 package br.senai.TestesUnit.exceptions;
 
 import br.senai.TestesUnit.records.Exceptions;
+import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -21,5 +22,10 @@ public class Handler {
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<Void> trataErroEntityNotFound() {
         return ResponseEntity.notFound().build();
+    }
+
+    @ExceptionHandler(EntityExistsException.class)
+    public ResponseEntity<Void> trataErroConflict() {
+        return ResponseEntity.status(409).build();
     }
 }

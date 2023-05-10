@@ -3,11 +3,13 @@ package br.senai.TestesUnit.service;
 import br.senai.TestesUnit.model.Veiculo;
 import br.senai.TestesUnit.records.MultaRecord;
 import br.senai.TestesUnit.repository.VeiculoRepository;
+import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,7 +22,7 @@ public class VeiculoService {
     public Veiculo cadastraVeiculo(Veiculo novoVeiculo) {
         Optional<Veiculo> veiculoAntigo = repository.findById(novoVeiculo.getPlaca());
         if (veiculoAntigo.isPresent()) {
-            throw new RuntimeException("Já existe um veículo cadastrado com essa placa!");
+            throw new EntityExistsException("Já existe um veículo cadastrado com essa placa!");
         }
         return repository.save(novoVeiculo);
     }
@@ -36,7 +38,7 @@ public class VeiculoService {
     public void deletaVeiculoPelaPlaca(String placa) {
         Veiculo veiculo = repository.findById(placa).orElseThrow(EntityNotFoundException::new);
         if (veiculo.getQtdMultas() > 0) {
-            throw new RuntimeException("O veículo não pode ser excluído pois possui multas cadastradas!");
+            throw new EntityExistsException("O veículo não pode ser excluído pois possui multas cadastradas!");
         }
         repository.deleteById(placa);
     }
